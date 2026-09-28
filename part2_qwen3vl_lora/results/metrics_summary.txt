@@ -1,0 +1,7 @@
+file                                   n     EM%    SIM%
+clean_base.jsonl                     500     2.0   77.07
+clean_r8_best.jsonl                  500     6.0   83.24
+clean_r16_best.jsonl                 500     6.6   83.58
+clean_r32_best.jsonl                 500     6.6   83.80
+clean_r16_3ep_best.jsonl             500     6.4   84.50
+clean_r16_3ep_last.jsonl             500     7.6   85.04

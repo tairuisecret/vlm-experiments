@@ -1,0 +1,30 @@
+--- model/model_vlm.py.bak	2026-09-26 03:09:34.496175609 +0800
++++ model/model_vlm_vectorized.py	2026-09-26 03:25:13.378653729 +0800
+@@ -74,6 +74,27 @@
+ 
+     @torch.compiler.disable
+     def count_vision_proj(self, tokens, h, vision_tensors=None, seqlen=512):
++        # 向量化实现：用 mask scatter 一次性替换全部视觉 token 位置的嵌入。
++        # 规则形状（各样本视觉 token 数相同）走批量路径，其余回退到逐样本实现。
++        if vision_tensors is None or not self.config.image_ids:
++            return h
++        vf = vision_tensors
++        if vf.dim() == 3:
++            vf = vf.unsqueeze(1)
++        mask = tokens == self.config.image_ids[0]
++        counts = mask.sum(dim=1)
++        if int(counts.max()) == 0:
++            return h
++        flat = vf.reshape(vf.size(0), -1, vf.size(-1))
++        n = int(counts[0])
++        if bool((counts == counts[0]).all()) and n <= flat.size(1):
++            src = flat[:, :n].reshape(-1, h.size(-1)).to(h.dtype)
++            return h.masked_scatter(mask.unsqueeze(-1), src)
++        return self._count_vision_proj_loop(tokens, h, vf, seqlen)
++
++    @torch.compiler.disable
++    def _count_vision_proj_loop(self, tokens, h, vision_tensors=None, seqlen=512):
++        # 原始逐样本实现，保留用于不规则输入的回退路径
+         if vision_tensors is None or not self.config.image_ids:
+             return h
+         marker, vf = self.config.image_ids[0], vision_tensors

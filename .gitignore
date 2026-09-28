@@ -1,0 +1,7 @@
+__pycache__/
+*.pth
+*.safetensors
+*.parquet
+data/
+imgs/
+checkpoint-*/
