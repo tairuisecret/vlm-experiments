@@ -1,17 +1,18 @@
 # VLM 复现、微调与强化学习实验记录
 
-三组视觉语言模型（VLM）实验的完整脚本、训练日志与分析结论。
+四组视觉语言模型（VLM）实验的完整脚本、训练日志与分析结论。
 
 - **实验一**：复现 LLaVA 范式的轻量级 VLM（基于 [minimind-v](https://github.com/jingyaogong/minimind-v)），完成两阶段训练、特征融合的向量化改写与 POPE 幻觉评测。
 - **实验二**：基于 [ms-swift](https://github.com/modelscope/ms-swift) 对 Qwen3-VL-8B 做手写公式识别（LaTeX-OCR）的 LoRA 微调，含数据泄漏审计、rank 消融与冻结策略消融。
 - **实验三**：在实验二基础上做 GRPO 强化微调（RLVR），并用对照实验定位其收益的真实来源。
+- **实验四**：在视频理解任务上量化"视觉 token 预算该如何分配"——抽帧数与每帧分辨率的权衡曲线。
 
 > 本仓库存放的是**实验脚本、日志与分析**，模型实现来自上述开源项目，版权归原作者。
 > 硬件：NVIDIA H20（共用集群，1–2 卡），bf16 + DDP。
 
 ---
 
-## 七个主要发现
+## 八个主要发现
 
 ### 1. 数据集重复采样导致验证集 100% 泄漏
 
@@ -114,6 +115,27 @@ eval loss 是 teacher forcing 下的逐 token 交叉熵，下游指标是自回�
 正确性：4 组不同 batch / 序列长度 / 图数配置逐元素比对，**最大差异 0.00e+00**；保留原实现作为不规则输入的回退路径。
 补丁 [`count_vision_proj_vectorize.diff`](part1_minimind_v/patch/count_vision_proj_vectorize.diff)，基准脚本 [`bench_vision_proj.py`](part1_minimind_v/scripts/bench_vision_proj.py)。
 
+### 8. 同等 token 预算下，多帧低清优于单帧高清
+
+在 MVBench 三个子任务（各 100 题）上系统改变抽帧数与每帧分辨率，测准确率、实际视觉 token 数与延迟：
+
+![token budget](part4_video_budget/results/token_budget_curves.png)
+
+**等 token 预算对比**：
+
+| 配置 | 视觉 token | Action Antonym | Fine-grained | Ego-Nav | 平均 |
+|---|---|---|---|---|---|
+| 1 帧 @100K 像素 | 81 | 67.0% | 44.0% | 32.0% | 47.7% |
+| **8 帧 @25K 像素** | **82** | **78.0%** | 43.0% | 32.0% | **51.0%** |
+
+几乎相同的 token 数下，**8 帧低清在时序任务上高出 11 个百分点**。
+
+**分辨率收益饱和**：8 帧固定时，每帧像素从 25K 提升至 400K（token 82 → 555，6.8 倍，延迟 +47%），三个任务合计仅涨 2–3 个百分点。
+
+**帧数存在最优点而非越多越好**：Action Antonym 在 4 帧达峰值 82%，8/16 帧分别降至 79%/75%；32 帧较 4 帧多耗 6 倍 token、2 倍延迟，准确率反低 5 个点。推测多余中间帧稀释了关键帧的注意力——这正是 token 压缩类工作的出发点。
+
+**单帧对照的设计**：框架最低支持 2 帧，为构造真正"零时序信息"的基线，改为抽取中间帧作为静态图片输入。Action Antonym（正放/倒放判别）单帧得分 67%，说明该任务部分可被语言先验猜中；而 67%→82% 的增益则确实来自跨帧信息。
+
 ---
 
 ## 实验一：minimind-v 两阶段训练
@@ -191,6 +213,9 @@ part2_qwen3vl_lora/
 part3_grpo/
 ├── scripts/   奖励函数插件、GRPO 数据构建与训练、2×2 对照实验与指标计算
 └── results/   GRPO 训练日志
+part4_video_budget/
+├── scripts/   视频 token 预算消融、曲线绘制
+└── results/   30 组配置的完整结果与权衡曲线图
 docs/          数据泄漏事件完整复盘
 ```
 
@@ -214,6 +239,10 @@ python part2_qwen3vl_lora/scripts/full_metrics.py
 python part3_grpo/scripts/prep_grpo.py
 bash part3_grpo/scripts/run_grpo.sh
 bash part3_grpo/scripts/run_2x2_probe.sh             # 区分泛化失败与协议错配
+
+# 实验四（纯推理，无需训练）
+bash part4_video_budget/scripts/run_video_ablation.sh
+python part4_video_budget/scripts/plot_curves.py
 ```
 
 脚本中的路径为实验环境的绝对路径，复现时需按实际情况调整。

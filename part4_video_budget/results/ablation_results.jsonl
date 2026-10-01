@@ -1,0 +1,30 @@
+{"task": "action_antonym", "nframes": 1, "max_pixels": 100352, "n": 100, "acc": 67.0, "video_tokens": 88.96, "sec_per_q": 0.4294950151443481, "peak_mem_gb": 17.6195968}
+{"task": "fine_grained_action", "nframes": 1, "max_pixels": 100352, "n": 100, "acc": 44.0, "video_tokens": 89.95, "sec_per_q": 0.6932188153266907, "peak_mem_gb": 17.615782912}
+{"task": "egocentric_navigation", "nframes": 1, "max_pixels": 100352, "n": 100, "acc": 32.0, "video_tokens": 64.0, "sec_per_q": 0.6234616923332215, "peak_mem_gb": 17.618955264}
+{"task": "action_antonym", "nframes": 2, "max_pixels": 100352, "n": 100, "acc": 64.0, "video_tokens": 95.22, "sec_per_q": 0.5233766150474548, "peak_mem_gb": 17.625588224}
+{"task": "fine_grained_action", "nframes": 2, "max_pixels": 100352, "n": 100, "acc": 44.0, "video_tokens": 92.77, "sec_per_q": 0.45535495042800905, "peak_mem_gb": 17.619541504}
+{"task": "egocentric_navigation", "nframes": 2, "max_pixels": 100352, "n": 100, "acc": 34.0, "video_tokens": 100.0, "sec_per_q": 0.5474682998657227, "peak_mem_gb": 17.633240064}
+{"task": "action_antonym", "nframes": 4, "max_pixels": 100352, "n": 100, "acc": 82.0, "video_tokens": 190.44, "sec_per_q": 0.6455899596214294, "peak_mem_gb": 17.66490624}
+{"task": "fine_grained_action", "nframes": 4, "max_pixels": 100352, "n": 100, "acc": 42.0, "video_tokens": 185.54, "sec_per_q": 0.4852399134635925, "peak_mem_gb": 17.659502592}
+{"task": "egocentric_navigation", "nframes": 4, "max_pixels": 100352, "n": 100, "acc": 35.0, "video_tokens": 200.0, "sec_per_q": 0.5948217725753784, "peak_mem_gb": 17.670108672}
+{"task": "action_antonym", "nframes": 8, "max_pixels": 100352, "n": 100, "acc": 79.0, "video_tokens": 380.88, "sec_per_q": 0.7897728610038758, "peak_mem_gb": 17.746127872}
+{"task": "fine_grained_action", "nframes": 8, "max_pixels": 100352, "n": 100, "acc": 42.0, "video_tokens": 371.08, "sec_per_q": 0.6151220989227295, "peak_mem_gb": 17.740687872}
+{"task": "egocentric_navigation", "nframes": 8, "max_pixels": 100352, "n": 100, "acc": 34.0, "video_tokens": 400.0, "sec_per_q": 0.7255714750289917, "peak_mem_gb": 17.74432512}
+{"task": "action_antonym", "nframes": 16, "max_pixels": 100352, "n": 100, "acc": 75.0, "video_tokens": 761.76, "sec_per_q": 1.0754151511192322, "peak_mem_gb": 17.895896064}
+{"task": "fine_grained_action", "nframes": 16, "max_pixels": 100352, "n": 100, "acc": 47.0, "video_tokens": 742.16, "sec_per_q": 0.8196544241905213, "peak_mem_gb": 17.89808128}
+{"task": "egocentric_navigation", "nframes": 16, "max_pixels": 100352, "n": 100, "acc": 40.0, "video_tokens": 800.0, "sec_per_q": 0.9727536940574646, "peak_mem_gb": 17.884820992}
+{"task": "action_antonym", "nframes": 8, "max_pixels": 200704, "n": 100, "acc": 80.0, "video_tokens": 420.56, "sec_per_q": 0.8269848203659058, "peak_mem_gb": 17.747476992}
+{"task": "fine_grained_action", "nframes": 8, "max_pixels": 200704, "n": 100, "acc": 45.0, "video_tokens": 659.96, "sec_per_q": 0.7176603364944458, "peak_mem_gb": 17.85136896}
+{"task": "egocentric_navigation", "nframes": 8, "max_pixels": 200704, "n": 100, "acc": 34.0, "video_tokens": 400.0, "sec_per_q": 0.7240829825401306, "peak_mem_gb": 17.745209856}
+{"task": "action_antonym", "nframes": 8, "max_pixels": 401408, "n": 100, "acc": 80.0, "video_tokens": 420.56, "sec_per_q": 0.7929086661338807, "peak_mem_gb": 17.747476992}
+{"task": "fine_grained_action", "nframes": 8, "max_pixels": 401408, "n": 100, "acc": 44.0, "video_tokens": 845.12, "sec_per_q": 0.8639477324485779, "peak_mem_gb": 18.106007552}
+{"task": "egocentric_navigation", "nframes": 8, "max_pixels": 401408, "n": 100, "acc": 34.0, "video_tokens": 400.0, "sec_per_q": 0.6913617897033691, "peak_mem_gb": 17.744603648}
+{"task": "action_antonym", "nframes": 32, "max_pixels": 100352, "n": 100, "acc": 77.0, "video_tokens": 1388.72, "sec_per_q": 1.4214231228828431, "n_clamped": 5, "peak_mem_gb": 18.12777472}
+{"task": "fine_grained_action", "nframes": 32, "max_pixels": 100352, "n": 100, "acc": 47.0, "video_tokens": 1439.2, "sec_per_q": 1.286550600528717, "n_clamped": 0, "peak_mem_gb": 18.143486464}
+{"task": "egocentric_navigation", "nframes": 32, "max_pixels": 100352, "n": 100, "acc": 37.0, "video_tokens": 752.64, "sec_per_q": 0.9409718942642212, "n_clamped": 8, "peak_mem_gb": 17.892837376}
+{"task": "action_antonym", "nframes": 8, "max_pixels": 25088, "n": 100, "acc": 78.0, "video_tokens": 92.16, "sec_per_q": 0.6075376176834106, "n_clamped": 0, "peak_mem_gb": 17.627538944}
+{"task": "fine_grained_action", "nframes": 8, "max_pixels": 25088, "n": 100, "acc": 43.0, "video_tokens": 90.72, "sec_per_q": 0.4791020083427429, "n_clamped": 0, "peak_mem_gb": 17.622577152}
+{"task": "egocentric_navigation", "nframes": 8, "max_pixels": 25088, "n": 100, "acc": 32.0, "video_tokens": 64.0, "sec_per_q": 0.5129075622558594, "n_clamped": 0, "peak_mem_gb": 17.626888704}
+{"task": "action_antonym", "nframes": 8, "max_pixels": 50176, "n": 100, "acc": 78.0, "video_tokens": 151.16, "sec_per_q": 0.6791343235969544, "n_clamped": 0, "peak_mem_gb": 17.655945728}
+{"task": "fine_grained_action", "nframes": 8, "max_pixels": 50176, "n": 100, "acc": 45.0, "video_tokens": 172.96, "sec_per_q": 0.5442013573646546, "n_clamped": 0, "peak_mem_gb": 17.657088}
+{"task": "egocentric_navigation", "nframes": 8, "max_pixels": 50176, "n": 100, "acc": 33.0, "video_tokens": 196.0, "sec_per_q": 0.6220540070533752, "n_clamped": 0, "peak_mem_gb": 17.671747072}
